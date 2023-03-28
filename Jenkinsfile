@@ -15,7 +15,7 @@ pipeline {
           // agent { label 'Centos7' }
             steps {
                 dir("/opt/jenkins/agent/workspace/MavenPipeline/hello-world") {
-                sh 'mvn -B -DskipTests clean package'
+                sh 'mvn -B -DskipTests clean package pom.xml'
                 }
             }
         }
