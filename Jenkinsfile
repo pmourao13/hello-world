@@ -14,7 +14,7 @@ pipeline {
         stage('Build') {
           // agent { label 'Centos7' }
             steps {
-                dir("/opt/jenkins/agent/workspace/MavenPipeline/hello-world") {
+                dir("/opt/jenkins/agent/workspace/MavenPipeline/") {
                 sh 'git clone -b master https://github.com/pmourao13/hello-world.git'
                 sh 'ls -lh /opt/jenkins/agent/workspace/MavenPipeline/hello-world/'
                 sh 'mvn -B -DskipTests clean package pom.xml'
