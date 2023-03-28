@@ -2,12 +2,29 @@ pipeline {
   agent darthAgent
   tools {
     maven "Maven 3.8.6"
+    jdk "JDK-11"
   }
-  
   stages {
-    stage ('Build Artifact') {
-      steps {
-        sh "mvn clean package -DskipTests=true"
-        archive 'target/*.war'
+        stage('Initialize'){
+            steps{
+                echo "PATH = ${M2_HOME}/bin:${PATH}"
+                echo "M2_HOME = /home/jenkins/"
+            }
+        }
+        stage('Build') {
+            steps {
+                dir("/var/lib/jenkins/workspace/MavenPipeline/hello-world") {
+                sh 'mvn -B -DskipTests clean package'
+                }
+            }
+        }
+     }
+    post {
+       always {
+          junit(
+        allowEmptyResults: true,
+        testResults: '*/test-reports/.xml'
+      )
       }
-    }
+   } 
+}
