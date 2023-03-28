@@ -1,5 +1,5 @@
 pipeline {
-  agent any
+  agent darthAgent
   tools {
     maven "Maven 3.8.6"
     jdk "JDK-11"
