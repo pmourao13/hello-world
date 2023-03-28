@@ -1,5 +1,5 @@
 pipeline {
-  agent darthAgent
+  agent none
   tools {
     maven "Maven 3.8.6"
     jdk "JDK-11"
@@ -12,8 +12,9 @@ pipeline {
             }
         }
         stage('Build') {
+          agent { label 'darthAgent' }
             steps {
-                dir("/var/lib/jenkins/workspace/MavenPipeline/hello-world") {
+                dir("/opt/jenkins/agent/workspace/MavenPipeline/hello-world") {
                 sh 'mvn -B -DskipTests clean package'
                 }
             }
