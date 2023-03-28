@@ -16,7 +16,7 @@ pipeline {
             steps {
                 dir("/opt/jenkins/agent/workspace/MavenPipeline/hello-world") {
                 sh 'git clone -b master https://github.com/pmourao13/hello-world.git'
-                sh 'mv /opt/jenkins/agent/workspace/MavenPipeline/hello-world/hello-world/* /opt/jenkins/agent/workspace/MavenPipeline/hello-world/'
+                sh 'mv /opt/jenkins/agent/workspace/MavenPipeline/hello-world/hello-world/* /opt/jenkins/agent/workspace/MavenPipeline/hello-world/ && rm -rf /opt/jenkins/agent/workspace/MavenPipeline/hello-world/hello-world/'
                 sh 'ls -lh /opt/jenkins/agent/workspace/MavenPipeline/hello-world/'
                 sh 'mvn -B -DskipTests clean package'
                 }
