@@ -12,7 +12,7 @@ pipeline {
             }
         }
         stage('Build') {
-          agent { label 'Centos7' }
+          # agent { label 'Centos7' }
             steps {
                 dir("/opt/jenkins/agent/workspace/MavenPipeline/hello-world") {
                 sh 'mvn -B -DskipTests clean package'
